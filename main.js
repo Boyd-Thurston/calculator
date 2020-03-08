@@ -6,33 +6,39 @@ var temp = '';
 // listener for buttons being clicked 
 document.addEventListener("click",getButtonEntry)
 
-// gathers value of button pressed and call follow on functions
+// gathers value of button pressed and call follow on function
 function getButtonEntry(event) {
     if(event.target.matches("button")){
-        let value = event.target.value
-        if(!isNaN(value) || value == "."){
-            temp += value;
-            updateDisplay();
-        } else if(value == 'AC'){
-            entries = [];
-            setTempToEmpty();
-            updateDisplay();
-        } else if (value == 'CE'){
-            setTempToEmpty();
-            updateDisplay();
-        } else if (value == '='){
-            entries.push(temp);
-            getAnswer(value);        
-        } else if(value == '%'){
-            entries.push(temp);
-            getAnswer(value);
-        } else {
-            entries.push(temp);
-            entries.push(value);
-            setTempToEmpty();
-        }
+        let value = event.target.value;
+        processButtonEntry(value);
     }
 }
+
+// process button entry to add to array or call answer/reset functions
+function processButtonEntry(value){
+    if(!isNaN(value) || value == "."){
+        temp += value;
+        updateDisplay();
+    } else if(value == 'AC'){
+        entries = [];
+        setTempToEmpty();
+        updateDisplay();
+    } else if (value == 'CE'){
+        setTempToEmpty();
+        updateDisplay();
+    } else if (value == '='){
+        entries.push(temp);
+        getAnswer(value);        
+    } else if(value == '%'){
+        entries.push(temp);
+        getAnswer(value);
+    } else {
+        entries.push(temp);
+        entries.push(value);
+        setTempToEmpty();
+    }
+}
+
 
 // function to update display
 function updateDisplay(){
