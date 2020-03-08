@@ -30,7 +30,6 @@ function getButtonEntry(event) {
             entries.push(temp);
             entries.push(value);
             setTempToEmpty();
-            updateDisplay();
         }
     }
 }
