@@ -2,15 +2,75 @@
 /* specify colors in for different browsers? */
 
 /* body - background and width style */
+body{
+    width: 100%;
+    /* background-color: darkgrey; */
+}
 
-/* class for calculator outer div with,hiegt,background,auto margin */
-/* - continued - curved edgeds*/
-/* - continued - shadows */
-/* - continued - title */
-/* - continued - tagline */
+/* class for calculator outer div */
+.calculator {
+    width: 250px;
+    height: 335px;
+    background-color: lightgrey;
+    margin: auto;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 5px 10px darkslategrey;
+    text-align: center;
+}
+
+p#title {
+    padding-top: 10px;
+    margin-bottom: -10px;
+    color: darkcyan;
+  }
+
+ p#tagline {
+    text-transform: uppercase;
+    color: darkcyan;
+    font-size: .7em;
+  }
+
+
 /* - continued - input display */
+input[type='text'] {
+    padding-right: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    height: 45px;
+    line-height: 40px;
+    width: 75%;
+    font-family: 'Wallpoet', cursive;
+    font-size: 1.8em;
+    text-align: right;
+}
 
 /* class for div row */
+.row {
+    display: block;
+}
+
 /* - continued - define button styles */
+button {
+    width: 40px;
+    height: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+    border-radius: 15px;
+    color: white;
+    background-color: darkslategrey;
+}
 /* - continued - define red buttons AC and CE */
 /* - continued - define tall button + */
+
+.tallButton {
+    height: 68px;
+    float: right;
+    margin-right: 24px;
+    margin-left:  -8px;
+}
+
+.redButton{
+    background-color: firebrick;
+}
