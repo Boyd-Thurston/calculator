@@ -3,28 +3,22 @@ var entries = [];
 var total = 0;
 var temp = '';
 
-
-// define outer event function for when buttons are clicked 
+// listener for buttons being clicked 
 document.addEventListener("click",getButtonEntry)
 
-// gathers value of button pressed
+// gathers value of button pressed and call follow on functions
 function getButtonEntry(event) {
     if(event.target.matches("button")){
         let display = document.getElementById("display")
         let value = event.target.value
-        // check if value is a number or a decimal place 
         if(!isNaN(value) || value == "."){
-            // concat to temp string
             temp += value;
-            // update display
             updateDisplay();
         } else if(value == 'AC'){
-            // clear temp, entries and updates display
             entries = [];
             setTempToEmpty();
             updateDisplay();
         } else if (value == 'CE'){
-            // clear temp and updates display
             setTempToEmpty();
             updateDisplay();
         } else if (value == '='){
@@ -34,7 +28,6 @@ function getButtonEntry(event) {
             entries.push(temp);
             getAnswer(value);
         }else {
-            // move temp value and opperator value to entries array
             entries.push(temp);
             entries.push(value);
             setTempToEmpty();
@@ -53,12 +46,10 @@ function setTempToEmpty(){
     temp = ''
 }
 
-// calculates answer from values in array
+// calculates answer from based on values in array and type of answer requested('=' or '%')
 function getAnswer(value){
-    // opening number on equasion
     total = Number(entries[0]);
     entries.shift();
-    // check for operator and adjust running total with next number in array as appropreate
     while(entries.length > 0){
         let i = entries[0]
         let j = getSecondNumber(value)
@@ -79,11 +70,11 @@ function getAnswer(value){
         entries.shift();
         entries.shift();
     }
-    // update temp and display
     temp = total;
     updateDisplay();
 }
 
+// modifies second value depending on if equation is simple or %
 function getSecondNumber(value){
     if(value == '='){
       return Number(entries[1])
@@ -91,35 +82,3 @@ function getSecondNumber(value){
         return (total * Number(entries[1]) / 100);
     }
 }
-
-// // calculates a percentage answer from values in array
-// function getPercentageAnswer(){
-//     // opening number on equasion
-//     let total = Number(entries[0]);
-//     entries.shift();
-//     // check for operator and adjust running total with next number in array as appropreate
-//     while(entries.length > 0){
-//         let i = entries[0];
-//         let j = (total * Number(entries[1]) / 100);
-//         switch(i){
-//             case '+':
-//                 total += j;
-//                 break;
-//             case '-':
-//                 total -= j;
-//                 break;
-//             case 'x':
-//                 total *= j;
-//                 break;
-//             case '÷':
-//                 total /= j;
-//                 break;
-//         }
-//         entries.shift();
-//         entries.shift();
-//     }
-//     // update temp and display
-//     temp = total;
-//     updateDisplay();
-//     console.log(entries)
-// }
