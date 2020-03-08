@@ -29,10 +29,10 @@ function getButtonEntry(event) {
             updateDisplay();
         } else if (value == '='){
             entries.push(temp);
-            getAnswer();        
+            getAnswer(value);        
         } else if(value == '%'){
             entries.push(temp);
-            getPercentageAnswer();
+            getAnswer(value);
         }else {
             // move temp value and opperator value to entries array
             entries.push(temp);
@@ -54,47 +54,14 @@ function setTempToEmpty(){
 }
 
 // calculates answer from values in array
-function getAnswer(){
+function getAnswer(value){
     // opening number on equasion
     total = Number(entries[0]);
     entries.shift();
     // check for operator and adjust running total with next number in array as appropreate
     while(entries.length > 0){
         let i = entries[0]
-        switch(i){
-            case '+':
-                total += Number(entries[1]);
-                break;
-            case '-':
-                total -= Number(entries[1]);
-                break;
-            case 'x':
-                total *= Number(entries[1]);
-                break;
-            case '÷':
-                total /= Number(entries[1]);
-                break;
-        }
-        entries.shift();
-        entries.shift();
-    }
-    // update temp and display
-    temp = total;
-    updateDisplay();
-    console.log(entries)
-}
-
-// calculates a percentage answer from values in array
-function getPercentageAnswer(){
-    // opening number on equasion
-    let total = Number(entries[0]);
-    entries.shift();
-    // check for operator and adjust running total with next number in array as appropreate
-    while(entries.length > 0){
-        let i = entries[0];
-        let j = (total * Number(entries[1]) / 100);
-        console.log(j);
-        console.log(typeof(j));
+        let j = getSecondNumber(value)
         switch(i){
             case '+':
                 total += j;
@@ -115,5 +82,44 @@ function getPercentageAnswer(){
     // update temp and display
     temp = total;
     updateDisplay();
-    console.log(entries)
 }
+
+function getSecondNumber(value){
+    if(value == '='){
+      return Number(entries[1])
+    } else if (value == '%'){
+        return (total * Number(entries[1]) / 100);
+    }
+}
+
+// // calculates a percentage answer from values in array
+// function getPercentageAnswer(){
+//     // opening number on equasion
+//     let total = Number(entries[0]);
+//     entries.shift();
+//     // check for operator and adjust running total with next number in array as appropreate
+//     while(entries.length > 0){
+//         let i = entries[0];
+//         let j = (total * Number(entries[1]) / 100);
+//         switch(i){
+//             case '+':
+//                 total += j;
+//                 break;
+//             case '-':
+//                 total -= j;
+//                 break;
+//             case 'x':
+//                 total *= j;
+//                 break;
+//             case '÷':
+//                 total /= j;
+//                 break;
+//         }
+//         entries.shift();
+//         entries.shift();
+//     }
+//     // update temp and display
+//     temp = total;
+//     updateDisplay();
+//     console.log(entries)
+// }
