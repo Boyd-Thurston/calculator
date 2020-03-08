@@ -9,7 +9,6 @@ document.addEventListener("click",getButtonEntry)
 // gathers value of button pressed and call follow on functions
 function getButtonEntry(event) {
     if(event.target.matches("button")){
-        let display = document.getElementById("display")
         let value = event.target.value
         if(!isNaN(value) || value == "."){
             temp += value;
@@ -27,7 +26,7 @@ function getButtonEntry(event) {
         } else if(value == '%'){
             entries.push(temp);
             getAnswer(value);
-        }else {
+        } else {
             entries.push(temp);
             entries.push(value);
             setTempToEmpty();
@@ -38,6 +37,7 @@ function getButtonEntry(event) {
 
 // function to update display
 function updateDisplay(){
+    let display = document.getElementById("display");
     display.value = temp;
 }
 
